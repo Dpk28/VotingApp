@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -45,23 +47,23 @@ public class MainActivity extends AppCompatActivity {
                     opt = "pizza";
                 else
                     opt = "icecream";
-                body = "{\n" +
-                        "  'jsonrpc': '2.0',\n" +
-                        "  'method': 'invoke',\n" +
-                        "  'params': {\n" +
-                        "    'type': 1,\n" +
-                        "    'chaincodeID': {\n" +
-                        "      'name': '580e824e83568470a6d8aa19119e8d5736ff15ba51eaeca3bf3f200b8596e4af0970b164319fffee43824a2ef8a40bcf105226d42a0a645667941bb17d5dbe93'\n" +
-                        "    },\n" +
-                        "    'ctorMsg': {\n" +
-                        "      'function': 'string',\n" +
-                        "      'args': [\n" +
-                        "        '" + opt + "'\n" +
-                        "      ]\n" +
-                        "    },\n" +
-                        "    'secureContext': 'user_type1_0'\n" +
-                        "  },\n" +
-                        "  'id': 0\n" +
+                body = "{" +
+                        "  'jsonrpc': '2.0'," +
+                        "  'method': 'invoke'," +
+                        "  'params': {" +
+                        "    'type': 1," +
+                        "    'chaincodeID': {" +
+                        "      'name': '580e824e83568470a6d8aa19119e8d5736ff15ba51eaeca3bf3f200b8596e4af0970b164319fffee43824a2ef8a40bcf105226d42a0a645667941bb17d5dbe93'" +
+                        "    }," +
+                        "    'ctorMsg': {" +
+                        "      'function': 'string'," +
+                        "      'args': [" +
+                        "        '" + opt + "'" +
+                        "      ]" +
+                        "    }," +
+                        "    'secureContext': 'user_type1_0'" +
+                        "  }," +
+                        "  'id': 0" +
                         "}";
                 CastVote task = new CastVote();
                 task.execute(new String[]{URL, body});
@@ -88,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
                     return response.body().string();
                 }
             } catch (Exception e) {
-                return "failed";
+                return e.getMessage();
             }
-            return "failed";
+            return "Failed";
         }
 
         @Override
