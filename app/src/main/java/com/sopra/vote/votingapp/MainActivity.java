@@ -1,13 +1,11 @@
 package com.sopra.vote.votingapp;
 
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import okhttp3.MediaType;
@@ -15,8 +13,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static com.sopra.vote.votingapp.R.id.textView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... url) {
-            // we use the OkHttp library from https://github.com/square/okhttp
             try {
                 RequestBody body = RequestBody.create(JSON, url[1]);
                 OkHttpClient client = new OkHttpClient();
@@ -88,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     return response.body().string();
                 }
             } catch (Exception e) {
-                return "failed";
+                return "Exception";
             }
             return "failed";
         }
