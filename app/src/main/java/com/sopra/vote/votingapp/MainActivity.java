@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     return response.body().string();
                 }
             } catch (Exception e) {
-                return "Exception";
+                return e.getMessage();
             }
             return "failed";
         }
