@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button submit;
     private Button result;
     private RadioGroup options;
-    final private String URL = "https://c2f5087bd8ec424db92ff564fcf3b374-vp0.us.blockchain.ibm.com:5004/chaincode";
+    final private String URL = "";
     private String body = "";
 
     @Override
