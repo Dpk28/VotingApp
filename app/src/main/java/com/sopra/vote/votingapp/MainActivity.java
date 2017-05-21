@@ -1,5 +1,6 @@
 package com.sopra.vote.votingapp;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -93,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
     class CastVote extends AsyncTask<String, Void, String> {
         public final MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Casting your vote");
+            this.dialog.show();
+        }
 
         @Override
         protected String doInBackground(String... url) {
@@ -121,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
             Toast.makeText(MainActivity.this, result,
                     Toast.LENGTH_LONG).show();
         }
@@ -139,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
         public String pizza;
         public String icecream;
         public String result = "";
+
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -224,6 +243,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
             Toast.makeText(MainActivity.this, result,
                     Toast.LENGTH_LONG).show();
         }
