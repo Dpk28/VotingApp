@@ -231,16 +231,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return result;
         }
-
-        /*@Override
-        protected void onProgressUpdate(Integer... progress) {
-            super.onProgressUpdate(progress);
-            if (this.bar != null) {
-                bar.setProgress(progress[0]);
-            }
-        }*/
-
-
         @Override
         protected void onPostExecute(String result) {
             if (dialog.isShowing()) {
